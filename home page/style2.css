@@ -1,0 +1,177 @@
+/* Import (toujours en haut) */
+@import url('header.css');
+            
+
+/* ===== VARIABLES ===== */
+.topbar {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  overflow-x: hidden;
+  margin: 0; padding: 0; box-sizing: border-box; 
+    background: #000; color: #fff; font-family: Arial, sans-serif; overflow-x: hidden; 
+}
+
+:root {
+    --primary: #f5c518;
+    --dark: #0f0f0f;
+    --card: #1a1a1a;
+    --text: #ffffff;
+    --muted: #b3b3b3;
+}
+
+/* ===== GLOBAL ===== */
+body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    
+}
+body::before {
+  content: '';
+
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://media.licdn.com/dms/image/v2/D5612AQGy6sM0SJAdxg/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1693150322893?e=2147483647&v=beta&t=2_aostRG53XjmjiS9FSI9Jcfn73tsoq3uFate9rV0XE') center/cover no-repeat;
+  opacity: 0.7; /* ← change cette valeur */
+  z-index: -1;
+}
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* ← change cette valeur */
+  z-index: -1;
+}
+/* ===== NAV ===== */
+
+
+.nav-action {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.nav-action:hover {
+    text-decoration: underline;
+}
+
+/* ===== SECTION ===== */
+#discover {
+    padding: 60px 20px;
+}
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* ===== TITRE ===== */
+.section-heading h2 {
+    font-size: 32px;
+    color: var(--primary);
+}
+
+.section-heading p {
+    color: var(--muted);
+}
+
+/* ===== SEARCH PANEL ===== */
+.search-panel {
+    margin-top: 30px;
+    background: var(--card);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* ===== ROW ===== */
+.search-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* ===== INPUTS & SELECT ===== */
+.search-row input,
+.search-row select {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #0b0b09;
+    color: #e2d9b7;
+    outline: none;
+    transition: 0.3s;
+}
+
+.search-row input::placeholder {
+    color: #d4c9a1;
+}
+
+.search-row input:focus,
+.search-row select:focus {
+    border: 1px solid var(--primary);
+    background: #333;
+}
+
+/* ===== BUTTON ===== */
+.primary-btn {
+    background: var(--primary);
+    color: black;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.primary-btn:hover {
+    background: #ffd84d;
+    transform: translateY(-2px);
+}
+
+/* ===== CHIPS ===== */
+.chip-row {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.chip {
+    background: #2a2a2a;
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.chip:hover {
+    background: var(--primary);
+    color: black;
+}
+
+.chip.active {
+    background: var(--primary);
+    color: black;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .search-row {
+        flex-direction: column;
+    }
+}
+
+    /* ── Main ── */
+    .main { flex: 1; margin-top: 60px; }
+
+     .topbar-n{
+      margin-left: 20px;
+    }

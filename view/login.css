@@ -1,0 +1,210 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root{
+  --p:#F5C518;      /* Couleur principale jaune */
+  --pd:#E0B010;     /* Version plus foncée pour hover */
+  --bd:#e3e1df;
+  --sh:0 10px 40px rgba(0,0,0,.6);
+  --ff:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  --ez:cubic-bezier(.68,-.55,.265,1.55);
+}
+html,body{width:100%;height:100%;font-family:var(--ff);overflow:hidden}
+
+/* ── BACKGROUND IMAGE ── */
+.bg-image{
+  position:fixed;inset:0;z-index:0;
+  background:url('background.png') center center / cover no-repeat;
+  transform:skewY(-6deg) scale(1.3);
+  transform-origin:center center;
+}
+
+/* Dark overlay on top of background - légèrement réchauffé */
+.bg-overlay{
+  position:fixed;inset:0;z-index:1;
+  background:linear-gradient(to right,rgba(0,0,0,.88) 0%,rgba(0,0,0,.5) 50%,rgba(0,0,0,.78) 100%);
+}
+
+/* ── LAYOUT ── */
+.container{
+  position:relative;z-index:10;
+  width:100%;height:100vh;
+  display:flex;justify-content:center;align-items:center;padding:20px;
+  overflow:hidden;
+}
+
+.page{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:100%;max-width:1000px;
+  display:flex;border-radius:15px;overflow:hidden;
+  box-shadow:var(--sh);transition:all .8s var(--ez);
+  max-height:95vh;
+}
+.page.exit-left{opacity:0;transform:translate(-150%,-50%);pointer-events:none}
+.page.exit-right{opacity:0;transform:translate(50%,-50%);pointer-events:none}
+.page.enter-left{animation:inL .8s var(--ez) forwards}
+.page.enter-right{animation:inR .8s var(--ez) forwards}
+@keyframes inL{from{opacity:0;transform:translate(-150%,-50%)}to{opacity:1;transform:translate(-50%,-50%)}}
+@keyframes inR{from{opacity:0;transform:translate(50%,-50%)}to{opacity:1;transform:translate(-50%,-50%)}}
+.page-signin{z-index:100}
+.page-signup{z-index:50}
+
+/* ── BRANDING SECTION - Modifié pour harmonie avec le jaune ── */
+.branding-section{
+  flex:0 0 380px;
+  background:linear-gradient(135deg,rgba(20,15,5,.97),rgba(30,20,5,.95));
+  padding:50px 35px;color:#fff;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+}
+.branding-section::before{
+  content:'';position:absolute;top:-40%;right:-40%;
+  width:500px;height:500px;border-radius:50%;
+  background:rgba(245,197,24,.1);animation:float 6s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(25px)}}
+
+.logo{display:flex;align-items:center;gap:12px;margin-bottom:35px;position:relative;z-index:1}
+.logo i{font-size:46px;color:var(--p);animation:pulse 2s ease-in-out infinite}
+.logo h1{font-size:44px;font-weight:800;letter-spacing:2px;background:linear-gradient(135deg,#F5C518,#FFE066);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+
+.branding-section h2{font-size:28px;font-weight:700;margin-bottom:12px;position:relative;z-index:1}
+.branding-section p{font-size:15px;margin-bottom:28px;opacity:.9;position:relative;z-index:1;line-height:1.6}
+
+.features{list-style:none;position:relative;z-index:1;width:100%}
+.features li{padding:10px 0;font-size:14px;display:flex;align-items:center;gap:13px;opacity:.9;text-align:left}
+.features i{color:var(--p);font-size:16px;width:18px}
+
+.trial-badge{
+  background:rgba(245,197,24,.15);border:2px solid var(--p);
+  padding:13px 22px;border-radius:50px;
+  display:flex;align-items:center;gap:10px;
+  margin-top:20px;font-weight:600;position:relative;z-index:1;font-size:15px;
+  color:#F5C518;
+}
+.trial-badge i{font-size:18px;color:#F5C518}
+
+/* ── FORM SECTION ── */
+.form-section{
+  flex:1;background:#fff;padding:40px 38px;
+  display:flex;flex-direction:column;justify-content:flex-start;
+  overflow-y:auto;
+}
+.form-section::-webkit-scrollbar{width:4px}
+.form-section::-webkit-scrollbar-thumb{background:rgba(245,197,24,.5);border-radius:2px}
+
+.form-header{margin-bottom:28px}
+.form-header h2{font-size:30px;color:#222;font-weight:700;margin-bottom:6px}
+.form-header p{color:#999;font-size:14px}
+
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:7px}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"]{
+  width:100%;padding:11px 14px;font-size:14px;font-family:var(--ff);
+  border:2px solid var(--bd);border-radius:8px;transition:all .3s;background:#fafafa;
+}
+.form-group input:focus{outline:none;border-color:var(--p);background:#fff;box-shadow:0 0 0 3px rgba(245,197,24,.15)}
+
+.checkbox-group{margin-bottom:16px}
+.checkbox-group label{display:flex;align-items:center;margin-bottom:9px;font-weight:500;font-size:13px;color:#666;cursor:pointer}
+.checkbox-group input[type="checkbox"]{width:16px;height:16px;margin-right:9px;cursor:pointer;accent-color:var(--p)}
+.remember-me input{accent-color:var(--p)}
+.checkbox-group .link,.forgot-password,.link-btn{color:var(--p);font-weight:600}
+.checkbox-group .link{text-decoration:none}
+.checkbox-group .link:hover,.forgot-password:hover{text-decoration:underline}
+
+.btn{
+  padding:12px 20px;border:none;border-radius:8px;font-family:var(--ff);
+  font-size:14px;font-weight:600;cursor:pointer;
+  transition:all .3s;text-transform:uppercase;letter-spacing:.5px;
+}
+.btn-primary{
+  width:100%;background:linear-gradient(135deg,#F5C518,#E0B010);color:#1a1a1a;
+  margin-bottom:16px;font-weight:700;
+}
+.btn-primary:hover{
+  background:linear-gradient(135deg,#E0B010,#C89C08);
+  transform:translateY(-2px);box-shadow:0 5px 20px rgba(245,197,24,.5);
+}
+.btn-primary:active{transform:translateY(0)}
+
+.social-login{display:flex;gap:10px;margin-bottom:16px}
+.btn-social{
+  flex:1;background:#f5f5f5;color:#333;border:2px solid var(--bd);
+  display:inline-flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px;font-size:13px;
+}
+.btn-social:hover{background:#eee;border-color:var(--p)}
+.btn-social.google:hover{color:#F5C518}
+.btn-social.facebook:hover{color:#F5C518}
+
+.divider{
+  text-align:center;color:#999;margin:16px 0;
+  font-size:12px;font-weight:600;
+  position:relative;z-index:1;background:#fff;padding:0 12px;
+}
+.divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:var(--bd);z-index:-1}
+
+.form-options{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:13px}
+.forgot-password{text-decoration:none}
+.remember-me{display:flex;align-items:center;gap:6px;cursor:pointer;color:#666}
+
+.signup-link,.signin-link{text-align:center;color:#666;font-size:13px;margin-top:12px;padding-bottom:4px}
+.link-btn{background:none;border:none;cursor:pointer;text-decoration:underline;font-size:13px;transition:color .3s;color:var(--p);font-weight:600}
+.link-btn:hover{color:var(--pd)}
+
+.spinner{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:50px;height:50px;border-radius:50%;z-index:1000;
+  border:4px solid rgba(245,197,24,.2);border-top-color:var(--p);
+  animation:spin 1s linear infinite;opacity:0;pointer-events:none;
+}
+.spinner.active{opacity:1}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+@media(max-width:900px){
+  .page{flex-direction:column;max-width:92vw}
+  .branding-section{flex:none;padding:35px 25px;min-height:auto}
+  .form-section{padding:30px 25px}
+}
+@media(max-width:600px){
+  .container{padding:10px}
+  .page{max-width:100vw}
+  .branding-section,.form-section{padding:25px 18px}
+  .social-login{flex-direction:column}
+  .form-options{flex-direction:column;gap:8px}
+}
+
+/* ── SUCCESS MESSAGE ── */
+.message{
+  position:fixed;
+  top:25px;
+  right:25px;
+  background:linear-gradient(135deg,#F5C518,#E0B010);
+  color:#1a1a1a;
+  padding:14px 22px;
+  border-radius:10px;
+  font-size:14px;
+  font-weight:700;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  opacity:0;
+  transform:translateY(-20px);
+  transition:all .4s ease;
+  z-index:2000;
+}
+
+/* show animation */
+.message.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* optional error style (for later if needed) */
+.message.error{
+  background:linear-gradient(135deg,#F5C518,#E0B010);
+  color:#1a1a1a;
+}

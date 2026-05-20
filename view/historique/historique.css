@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', Arial, sans-serif;
+  background: #080808;
+  color: #fff;
+  min-height: 100vh;
+}
+
+/* ── Glows de fond ── */
+body::before {
+  content: '';
+  position: fixed;
+  top: -200px; left: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(229,9,20,0.07) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -200px; right: -200px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(251,191,36,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 68px;
+  background: rgba(8,8,8,0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.topbar-logo {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #f5c518;
+  letter-spacing: 1px;
+}
+.btn-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fbbf24;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 18px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-back:hover { background: #666e08; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  padding: 40px 32px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  z-index: 1;
+}
+.page-header p {
+  font-size: 0.75rem;
+  color: #f5c518;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+.page-header h1 span { color: #f5c518; }
+.page-header small {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.85rem;
+}
+
+/* ── CONTAINER ── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── EMPTY ── */
+.empty {
+  text-align: center;
+  padding: 80px 20px;
+  color: rgba(255,255,255,0.3);
+}
+.empty i { font-size: 3rem; margin-bottom: 16px; display: block; }
+.empty p { font-size: 1.1rem; }
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* ── CARD ── */
+.card {
+  background: linear-gradient(145deg, #181818, #121212);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  animation: fadeUp 0.4s ease both;
+}
+.card:hover {
+  transform: translateY(-6px) scale(1.02);
+  border-color: #f5c518(229,9,20,0.5);
+  box-shadow: 0 12px 40px rgba(229,9,20,0.18), 0 0 0 1px rgba(229,9,20,0.1);
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── POSTER ── */
+.poster {
+  height: 170px;
+  background: linear-gradient(135deg, #1c1c1c 0%, #111 50%, #1a0a0a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+.poster::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 60px;
+  background: linear-gradient(to top, rgba(18,18,18,0.9), transparent);
+}
+
+/* ── CARD BODY ── */
+.card-body { padding: 14px 16px; }
+
+.film-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.film-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+}
+.film-date i { color: #fbbf24; }
+
+.film-badge {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.7rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: rgba(229,9,20,0.1);
+  border: 1px solid  #f5c518;
+  color: #f5c518;
+}
