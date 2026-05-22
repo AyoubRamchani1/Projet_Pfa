@@ -1,0 +1,9 @@
+vendor/
+coverage/
+coverage-report/
+reports/
+sqlmap-dev/
+pentest/tools/sqlmap/
+
+*.log
+*.cache

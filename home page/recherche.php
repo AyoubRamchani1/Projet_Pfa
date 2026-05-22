@@ -6,6 +6,7 @@
  */
 
 require_once 'db_config.php';
+require_once __DIR__ . '/../model/SearchScorer.php';
 
 class FilmSearchEngine {
     private $conn;
@@ -252,13 +253,39 @@ class FilmSearchEngine {
         $searchGenre = strtolower(trim($searchGenre));
 
        $genreMap = [
-    'Drama'           => 'drama',
-    'Comedy'          => 'comedy',
-    'Drama Romance'   => 'drama romance',
-    'Comedy Romance'  => 'comedy romance',
-    'Comedy Drama'    => 'comedy drama',
-    'Horror Thriller' => 'horror thriller',
-    'Horror'          => 'horror',
+     // Genres simples
+        'Drama'            => 'drama',
+        'Comedy'           => 'comedy',
+        'Action'           => 'action',
+        'Adventure'        => 'adventure',
+        'Thriller'         => 'thriller',
+        'Romance'          => 'romance',
+        'Horror'           => 'horror',
+        'Fantasy'          => 'fantasy',
+        'Mystery'          => 'mystery',
+        'Crime'            => 'crime',
+        'Animation'        => 'animation',
+        'Sci-Fi'           => 'sci-fi',
+        'Family'           => 'family',
+        'War'              => 'war',
+        'History'          => 'history',
+        'Music'            => 'music',
+        'Documentary'      => 'documentary',
+
+        // Genres combinés
+        'Drama Romance'    => 'drama romance',
+        'Comedy Romance'   => 'comedy romance',
+        'Comedy Drama'     => 'comedy drama',
+        'Horror Thriller'  => 'horror thriller',
+        'Action Adventure' => 'action adventure',
+        'Action Thriller'  => 'action thriller',
+        'Crime Drama'      => 'crime drama',
+        'Mystery Thriller' => 'mystery thriller',
+        'Sci-Fi Adventure' => 'sci-fi adventure',
+        'Fantasy Adventure'=> 'fantasy adventure',
+        'Animation Family' => 'animation family',
+        'War Drama'        => 'war drama',
+        'Romantic Comedy'  => 'romantic comedy',
 ];
         $searchGenreExpanded = $genreMap[$searchGenre] ?? $searchGenre;
 
@@ -591,14 +618,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                     <div class="search-panel reveal delay-1">
                         <div class="search-row">
                             <select id="genreSelect" aria-label="Filtrer par genre">
-    <option value="">Tous les genres</option>
-    <option value="Drama">Drama</option>
-    <option value="Comedy">Comedy</option>
-    <option value="Drama Romance">Drama Romance</option>
-    <option value="Comedy Romance">Comedy Romance</option>
-    <option value="Comedy Drama">Comedy Drama</option>
-    <option value="Horror Thriller">Horror Thriller</option>
-    <option value="Horror">Horror</option>
+   <option value="">Tous les genres</option>
+
+<!-- Genres simples -->
+<option value="Drama">Drama</option>
+<option value="Comedy">Comedy</option>
+<option value="Action">Action</option>
+<option value="Adventure">Adventure</option>
+<option value="Thriller">Thriller</option>
+<option value="Romance">Romance</option>
+<option value="Horror">Horror</option>
+<option value="Fantasy">Fantasy</option>
+<option value="Mystery">Mystery</option>
+<option value="Crime">Crime</option>
+<option value="Animation">Animation</option>
+<option value="Sci-Fi">Sci-Fi</option>
+<option value="Family">Family</option>
+<option value="War">War</option>
+<option value="History">History</option>
+<option value="Music">Music</option>
+<option value="Documentary">Documentary</option>
+
+<!-- Genres combinés -->
+<option value="Drama Romance">Drama Romance</option>
+<option value="Comedy Romance">Comedy Romance</option>
+<option value="Comedy Drama">Comedy Drama</option>
+<option value="Horror Thriller">Horror Thriller</option>
+<option value="Action Adventure">Action Adventure</option>
+<option value="Action Thriller">Action Thriller</option>
+<option value="Crime Drama">Crime Drama</option>
+<option value="Mystery Thriller">Mystery Thriller</option>
+<option value="Sci-Fi Adventure">Sci-Fi Adventure</option>
+<option value="Fantasy Adventure">Fantasy Adventure</option>
+<option value="Animation Family">Animation Family</option>
+<option value="War Drama">War Drama</option>
+<option value="Romantic Comedy">Romantic Comedy</option>
 </select>
                             <input id="langInput" type="text" placeholder="Langue (ex: en, fr, es)...">
                             <input id="actorInput" type="text" placeholder="Nom de l'acteur...">

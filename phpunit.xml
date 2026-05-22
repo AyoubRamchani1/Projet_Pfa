@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true">
+
+    <testsuites>
+
+        <testsuite name="Unit Tests">
+            <directory>tests/testunitaire</directory>
+        </testsuite>
+
+        <testsuite name="Performance Tests">
+            <directory>tests/testperfermance</directory>
+        </testsuite>
+
+        <testsuite name="Robustesse Tests">
+            <directory>tests/testrobustesse</directory>
+        </testsuite>
+
+    </testsuites>
+
+    <source>
+        <include>
+            <directory suffix=".php">controller</directory>
+            <directory suffix=".php">model</directory>
+            <directory suffix=".php">admin</directory>
+            <directory suffix=".php">view</directory>
+            <directory suffix=".php">description page</directory>
+            <directory suffix=".php">home page</directory>
+        </include>
+    </source>
+
+    <coverage>
+        <report>
+            <html outputDirectory="coverage"/>
+            <text outputFile="php://stdout"/>
+        </report>
+    </coverage>
+
+</phpunit>
